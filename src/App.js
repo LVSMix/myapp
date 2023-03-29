@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
+import Header from "./components/header";
+import NewDish from "./components/newDish";
+import './styles/App.css';
+import { useNavigate} from "react-router-dom";
+import { Dishes } from "./components/dishes";
+import data from "./assets/data/dishes.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function withRouter(Component) {
+  return props => <Component history={useNavigate()} />;
 }
 
-export default App;
+class App extends Component {
+ 
+  state ={
+    dish: "tacos",
+    dishes: data
+  }
+
+  showDishes = e => {
+    e.preventDefault();
+    this.props.history("/platillos");
+  };
+
+  render(){
+      return (
+        <div className="App">
+          <Header />
+          <NewDish />
+          <Dishes data={this.state.dishes}></Dishes>
+        </div>
+      );
+  }
+}
+
+export default withRouter(App);
