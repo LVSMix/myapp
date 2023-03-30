@@ -13,13 +13,17 @@ export class Dishes extends Component{
         this.props.history("/");
     };
 
+    updateDish = (index,updateName) =>{
+       this.props.onUpdateDish(index,updateName);
+    }
+
     render(){
         return(
              <div>
                 <Grid container spacing={3}>              
                     {this.props.data.dishes.map((dish, index) => (
                       <Grid item xs="6" md="4">
-                        <Dish key={index} name={dish.name} ingredients={dish.ingredients}></Dish>
+                        <Dish key={index} name={dish.name} ingredients={dish.ingredients} index={index} onUpdateDish={this.updateDish}></Dish>
                       </Grid>
                     ))} 
                 </Grid>

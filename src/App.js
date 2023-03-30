@@ -23,12 +23,30 @@ class App extends Component {
     this.props.history("/platillos");
   };
 
+  updateDish = (index, updatedName) =>{
+    let newState = {...this.state};
+    newState.dishes.dishes[index].name = updatedName;
+    this.setState(newState);
+  }
+
+  addDish = (dishName) => {
+    let newState = {...this.state};
+    const newDish = {
+      id: newState.dishes.dishes.length,
+      name: dishName,
+      country: "Mexico",
+      ingredients: ["Semillas","Pollo","Arroz"]
+    };
+    newState.dishes.dishes.push(newDish);
+    this.setState(newState);
+  }
+
   render(){
       return (
         <div className="App">
           <Header />
-          <NewDish />
-          <Dishes data={this.state.dishes}></Dishes>
+          <NewDish  onAddDish={this.addDish}/>
+          <Dishes data={this.state.dishes} onUpdateDish={this.updateDish}></Dishes>
         </div>
       );
   }

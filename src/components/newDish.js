@@ -8,10 +8,12 @@ class NewDish extends Component{
     
     newDish = React.createRef();  
 
-    addDish = event => {
+    addDish = event =>{
       console.log("Agregar Platillo");
       event.preventDefault();
       console.log(this.newDish.value);
+      this.props.onAddDish(this.newDish.value);
+      this.newDish.value = "";
     }
    
     render(){

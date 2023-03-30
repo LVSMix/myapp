@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import { useParams } from "react-router-dom";
-import {Card, CardContent } from "@mui/material";
+import {Card, CardContent, IconButton, TextField } from "@mui/material";
 import {
   List,
   ListItem,
@@ -9,6 +9,7 @@ import {
   ListItemIcon
 } from "@mui/material";
 import ScatterPlot from "@mui/icons-material/ScatterPlot";
+import Edit from "@mui/icons-material/Edit";
 
 
 export class Flag extends Component {
@@ -38,24 +39,51 @@ function withParams(Component) {
 
 
 class Dish extends Component {
-  ingredients = ["Tortilla","Carne","Cebolla"];
-
-  countIngredients(){
-    return this.ingredients.length;
+  
+  state = {
+    edit: false,
+    name: this.props.name
   }
 
+  edit = e => {
+    this.setState({edit:!this.state.edit});
+  };
 
+  handleChange = e => {
+    let newState = {...this.state};
+    newState.name = e.currentTarget.value;
+    this.setState(newState);
+    this.props.onUpdateDish(this.props.index,newState.name);
+  };
+
+  componentDidUpdate(){
+    console.log("Componente Actualizado");
+  }
 
   render(){
-    const {name} = this.props.params;
     return(
       <Card classname="card">
          <CardContent>
             <List component="nav" subheader={
-              <ListSubheader component="div">{this.props.name}
+              <ListSubheader component="div">
+                {this.state.edit ? (
+                <TextField
+                  label="Platillo"
+                  type="text"
+                  margin="normal"
+                  variant="outlined"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                /> 
+                ):(
+                  this.props.name
+                )}
+              <IconButton size="small" onClick={this.edit}>
+                <Edit/>
+              </IconButton>  
               </ListSubheader>
             }>
-             {this.ingredients.map((ingredient,index) =>(
+             {this.props.ingredients.map((ingredient,index) =>(
                <ListItem button key={index}>
                   <ListItemIcon>
                     <ScatterPlot />
