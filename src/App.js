@@ -5,6 +5,7 @@ import './styles/App.css';
 import { useNavigate} from "react-router-dom";
 import { Dishes } from "./components/dishes";
 import data from "./assets/data/dishes.json";
+import MenuBar from "./components/menuBar";
 
 
 function withRouter(Component) {
@@ -45,6 +46,7 @@ class App extends Component {
       return (
         <div className="App">
           <Header />
+          <MenuBar />
           <NewDish  onAddDish={this.addDish}/>
           <Dishes data={this.state.dishes} onUpdateDish={this.updateDish}></Dishes>
         </div>
