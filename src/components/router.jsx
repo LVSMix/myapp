@@ -10,8 +10,6 @@ const Router = () => (
     <BrowserRouter>
        <Routes>
          <Route exact path="/" element={<App />} />
-         <Route path='/platillos' element={<Dishes />} />
-         <Route path='/platillo/:name' element={<Dish />} />
          <Route path='/paises' element={<Countries />} />
          <Route path="*" element={<NotFound />} />
        </Routes>

@@ -1,56 +1,35 @@
-import { Button, MenuItem, MenuList, Menu, ListItemIcon, ListItemText} from "@mui/material";
-import Save from "@mui/icons-material/Save";
-import Share from "@mui/icons-material/Share";
-import React, {Link} from "react";
-import { useState } from "react";
+import React from 'react';
+import {Button, Menu, MenuItem, Link} from "@mui/material";
 
-function MenuBar(){
-  const [menu, setMenu] = useState(null);
-  const open = Boolean(menu);
-  const handleClick = (e) => {
-        setMenu(e.currentTarget);
+export function MenuBar(){
+  
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-    return(
-      <center>
-         <div>
-           <h1 style={{ color: "green" }}>Bienvenidos</h1>
-           <h2>Menu Navigation</h2>
-         </div>
-         <div>
-         <Button
-            id="button"
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
-            color="secondary"
-            variant="contained"
-         >
-         open
-         </Button>  
-         <Menu  id="menu"
-                anchorEl={menu}
-                open={open}
-                anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-          }}>
-            <MenuList>
-               <MenuItem component={Link} to='/platillos'>
-                  <ListItemIcon><Save fontSize="small" /></ListItemIcon>
-                  <ListItemText>Platillos</ListItemText>
-               </MenuItem>
-               <MenuItem component={Link} to='/paises'>
-                  <ListItemIcon>
-                      <Share fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText>Paises</ListItemText>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-         </div>
-      </center>
-    )
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return(
+    <div>
+      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        Open Menu
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}><a href="/paises">Paises</a></MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+    </Menu>
+  </div>
+  )    
 }
 
 export default MenuBar;

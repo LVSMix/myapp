@@ -2,12 +2,18 @@ import React, { Component } from "react";
 import { useNavigate} from "react-router-dom";
 import {Grid} from "@mui/material";
 import Dish from "./dish";
+import data from "../assets/data/dishes.json";
 
 function withRouter(Component) {
     return props => <Component history={useNavigate()} />;
   }
 
 export class Dishes extends Component{
+  state ={
+    dishes: data
+  }
+
+    
     goBack = e => {
         e.preventDefault();
         this.props.history("/");
