@@ -8,6 +8,7 @@ import CardsHeader from '../components/cardsheader';
 import Cards from '../components/cards';
 import Graphics from '../components/graphics';
 import TableMaterial from '../components/tableMaterial';
+import Sidebar from '../components/sidebar';
 
 const data = [
   {
@@ -40,7 +41,7 @@ export default function Dashboard(props) {
     <div className="root">
       <Grid container spacing={3} >
           <Grid item xs={12}>
-            <Navbar/>
+            <Sidebar />
           </Grid>
 
           <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
