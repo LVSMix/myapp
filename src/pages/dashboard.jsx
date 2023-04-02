@@ -52,9 +52,8 @@ export default function Dashboard(props) {
           <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
             <CardsHeader icono={<VideocamIcon className="iconos"/>} titulo="CANTIDAD DE VÍDEOS" texto="85" color="rgba(248,80,50,1)" font="white"/>
           </Grid>
-        
-
-          <Grid container spacing={3} className="container" xs={12} sm={12} md={6} lg={6} xl={6}>
+                    
+          <Grid container spacing={4} className="container-cards" xs={12} sm={12} md={6} lg={6} xl={6}>
               <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                 <Cards titulo="SUSCRIPTORES" texto="692"/>
               </Grid>
