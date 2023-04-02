@@ -48,13 +48,17 @@ body{
   border-radius: 50%;
 }
 
+.menu-link-navbar {
+  text-decoration: 'none',
+}
+
 /******************/
 
 
 /** CARD HEADER **/
 .root-cards-header{
   text-align: center;
-  background: black;
+  background-color: red;
 }
 
 .texto-cards-header{
@@ -65,7 +69,7 @@ body{
 .titulo-cards-header{
   font-weight: bold;
   font-size: 22;
-  color: balc
+  color: black
 }
 
 /*** CARDS **/
